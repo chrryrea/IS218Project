@@ -1,0 +1,600 @@
+/* === RESET & BASE === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #126bcb;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* === CONTAINER === */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* === TOP BANNER === */
+  .top-banner {
+    background-color:white;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  /* === HEADER === */
+  header {
+    background: linear-gradient(to right, #b1d0e0, #f3a880);
+    padding: 20px;
+    text-align: center;
+    /*background-color: azure;
+    padding: 30px 0 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    position: relative; */
+  }
+  
+  /*the top 'EDIBLE SCULPTURES:*/
+  .logo {
+    font-family: cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #342506;
+    margin-bottom: 0.4rem;
+  }
+  
+  /* === CART ICON === */
+  .cart-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* === NAVIGATION === */
+  .nav {
+    margin-top: 15px;
+  }
+  
+  .nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 40px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #2e2e2e;
+    font-weight: 500;
+    font-size: 16px;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav a.active,
+  .nav a:hover {
+    color: #1d81f2;
+    border-bottom: 2px solid #0070f3;
+  }
+  
+
+/*The top part of home page w welcome message:*/
+#home-image{
+  position: relative;
+  width: 30rem;
+  height: auto;
+}
+
+.top-index {
+    background-color:beige;
+    padding: 1rem 0;
+    text-align: center;
+    margin: 1rem;
+    font-family:'Times New Roman', Times, serif;
+    color: #e19a0b;
+  }
+
+  /*The .container p{ is for the subtext under welcome msg and under upcoming events*/
+  .container p{
+    font-size: large;
+  }
+
+
+  /* ARTISTS  SECTION  */
+  .artists-collab {
+    background-color: bisque;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .artists-collab h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: rgba(142, 65, 65, 0.725);
+  }
+  .artists-collab p {
+    display: block;
+    
+  }
+  .artist img {
+    height: 15rem;
+    display:block;
+    width: auto;
+    padding-right: 2rem;
+  }
+  
+  .artist h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color:cornflowerblue;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .artist p {
+    font-size: 1.02rem;
+    color: #555;
+    text-align:justify;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 2rem;
+}
+  
+.artist-pic{
+    float: left;
+    height: 4rem;
+    width: auto;
+}
+
+/* === UPCOMING EVENTS SECTION === */
+.upcoming-events {
+    background-color:lavenderblush;
+    padding: 60px 0;
+    text-align: center;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container h2{
+    font-size: 150%S;
+  }
+  .upcoming-events h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: left;
+    color:rgb(133, 38, 98);
+  }
+  
+  .upcoming-events ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .upcoming-events li {
+    font-size: 2rem;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: purple;
+    margin: 2rem;
+  }
+  
+  .upcoming-events p{
+    color:plum;
+  }
+
+  .upcoming-events #tickets{
+    margin: 1rem;
+  }
+  .upcoming-events .btn {
+    background-color: darkslateblue;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .upcoming-events .btn:hover {
+    background-color: #e19a0b;
+  }
+  
+  /* === FEATURED PRODUCTS SECTION === */
+  .featured-products {
+    background-color: blanchedalmond;
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .featured-products h2 {
+    margin-bottom: 20px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    color: #555555;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+  
+  .hero .btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: #0070f3;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero .btn:hover {
+    background-color: #005ad3;
+  }
+  
+   /*==ABOUT PAGE==*/
+
+  .about {
+    background-color:aliceblue;
+    padding: 80px 0;
+    text-align: center;
+  }
+  
+  .about h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 20px;
+  }
+  
+  .about p {
+    font-size: 18px;
+    color: #444444;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+   /*Team members section*/
+
+  .team-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    justify-content: left;
+    background-color: aliceblue;
+  }
+  
+  h2{
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+}
+
+  #teampics {
+    height: 10rem;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 2rem;
+  }
+  
+  h3{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:rgb(76, 132, 236);
+  }
+
+  .team-info {
+    text-align: left;
+  }
+  
+  .team-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-container p {
+    font-size: 1rem;
+    color: black;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  /* === SHOP PAGE === */
+  .shop{
+    background-color: rgb(223, 238, 243);
+    margin: 1rem;
+}
+  .shop h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #1e1e1e;
+  }
+  
+  .shop-categories {
+    padding: 60px 0 30px;
+    background-color:rgb(223, 238, 243);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    text-align: center;
+  }
+  
+  .shop-categories h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    color: #1e1e1e;
+  }
+  
+  .category-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 7rem;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+  }
+  
+  .category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 180px;
+    scroll-snap-align: center;
+  }
+  
+  .category img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ccc;
+    transition: transform 0.3s;
+  }
+  
+  .category img:hover {
+    transform: scale(1.1);
+  }
+  
+  .category p {
+    margin-top: 0.5rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .product-item {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .product-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 1.5rem;
+  }
+  
+  .product-info {
+    text-align: left;
+    flex: 1;
+  }
+  
+  .product-info h3 {
+    margin-bottom: 0.5rem;
+    color: #126bcb;
+  }
+  
+  .product-info p {
+    margin: 0.25rem 0;
+  }
+  
+  .product-info .price {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .shop-item button:hover {
+    background-color: #005ad3;
+  }
+  
+  .product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: rgb(238, 203, 158);
+  }
+  
+  .product img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+  
+  .product-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .product-info p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .product-info .btn {
+    background-color: #e19a0b;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+  }
+  
+  .product-info .btn:hover {
+    background-color: #005bb5;
+  }
+  
+
+  
+  /* === CTA SECTION === */
+  .cta {
+    background-color: #827a7a;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  .cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta .btn {
+    background-color: #e19a0b;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  .cta .btn:hover {
+    background-color:#0070f3;
+  }
+  /* === Contact Page === */
+  .contact-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px;
+    flex-wrap: wrap;
+  }
+
+  .info-box {
+    background-color: #a9bcc3;
+    padding: 30px;
+    color: white;
+    width: 300px;
+    border-radius: 10px;
+  }
+
+  .info-box h2 {
+    color: #003049;
+  }
+
+  .info-item {
+    margin: 20px 0;
+  }
+
+  .info-item i {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .contact-form {
+    background-color: #e3f0d6;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+  }
+
+  .contact-form button {
+    background-color: #72b3a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* === FOOTER === */
+  footer {
+    background: linear-gradient(to right, #b1d0e0, #f3a880);
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    /*background-color: #1a1a1a;
+    color: #bbbbbb;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; */
+  }
+.socials i {
+  margin: 0 8px;
+  font-size: 20px;
+}
+  
+/*CART PAGE*/
+
+.cart-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.nav a.active {
+  color: blue;
+  font-weight: bold;
+}

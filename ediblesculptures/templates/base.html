@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Edible Sculptures{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="nav-left">
+                <h1 class="logo">Edible Sculptures</h1>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>Home</a></li>
+                        <li><a href="{% url 'product_list' %}" {% if request.resolver_match.url_name == 'product_list' %}class="active"{% endif %}>Shop</a></li>
+                        <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>About Us</a></li>
+                        <li><a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="cart-icon">
+                <a href="{% url 'cart_detail' %}"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

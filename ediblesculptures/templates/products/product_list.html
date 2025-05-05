@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Shop - Edible Sculptures{% endblock %}
+
+{% block content %}
+<section class="shop-categories">
+    <div class="container">
+        <h2>Shop by Category</h2>
+        <div class="category-row">
+            {% for category in categories %}
+            <div class="category">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                <p>{{ category.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="shop">
+    <div class="container">
+        <h2>Our Products</h2>
+        
+        {% for product in products %}
+        <div class="product-item">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p class="price">${{ product.price }}</p>
+                <p class="artist">by {{ product.artist }}</p>
+                <form action="{% url 'cart_add' product.pk %}" method="post" class="cart-form">
+                    {% csrf_token %}
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="10">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
