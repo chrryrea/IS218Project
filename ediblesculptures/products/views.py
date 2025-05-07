@@ -1,63 +1,88 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Avg
-from .models import Product, Feedback, Category
-from .forms import FeedbackForm
+from .models import Product, Review, Category, Artist, Event
+from datetime import datetime
+from .forms import CartAddProductForm, ReviewForm
+
+def home(request):
+    featured_products = Product.objects.filter(featured=True)[:4]
+    featured_artist = Artist.objects.filter(featured=True).first()
+    upcoming_events = Event.objects.filter(date__gte=datetime.now()).order_by('date')[:3]
+    
+    return render(request, 'home.html', {
+        'featured_products': featured_products,
+        'featured_artist': featured_artist,
+        'upcoming_events': upcoming_events
+    })
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
 
 def product_list(request):
     categories = Category.objects.all()
+    artists = Artist.objects.all()
     products = Product.objects.all()
+    
+    category_id = request.GET.get('category')
+    artist_id = request.GET.get('artist')
+    
+    if category_id:
+        products = products.filter(category_id=category_id)
+    
+    if artist_id:
+        products = products.filter(artist_id=artist_id)
+    
     return render(request, 'products/product_list.html', {
         'categories': categories,
+        'artists': artists,
         'products': products
     })
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    feedbacks = product.feedbacks.all()
+    reviews = product.reviews.all()
+    cart_product_form = CartAddProductForm()
     
     if request.method == 'POST':
-        form = FeedbackForm(request.POST)
+        form = ReviewForm(request.POST)
         if form.is_valid():
-            feedback = form.save(commit=False)
-            feedback.product = product
-            feedback.user = request.user
-            feedback.save()
-            messages.success(request, 'Your feedback has been submitted!')
-            return redirect('product_detail', pk=pk)
+            review = form.save(commit=False)
+            review.product = product
+            review.save()
+            messages.success(request, 'Your review has been submitted!')
+            return redirect('products:product_detail', pk=pk)
     else:
-        form = FeedbackForm()
+        form = ReviewForm()
     
     return render(request, 'products/product_detail.html', {
         'product': product,
-        'feedbacks': feedbacks,
-        'form': form
+        'reviews': reviews,
+        'form': form,
+        'cart_product_form': cart_product_form
     })
 
-@login_required
-def admin_dashboard(request):
-    # Get all products with their average ratings in a single query
-    products_with_ratings = Product.objects.annotate(avg_rating=Avg('feedbacks__rating'))
-    
-    # Get recent feedbacks
-    recent_feedbacks = Feedback.objects.order_by('-created_at')[:10]
-    
-    # Get all categories
-    categories = Category.objects.all()
-    
-    # Prepare product ratings data
-    product_ratings = [
-        {
-            'product': product,
-            'avg_rating': product.avg_rating or 0,
-            'feedback_count': product.feedbacks.count()
-        }
-        for product in products_with_ratings
-    ]
-    
-    return render(request, 'products/admin_dashboard.html', {
-        'product_ratings': product_ratings,
-        'recent_feedbacks': recent_feedbacks,
-        'categories': categories
+def artist_list(request):
+    artists = Artist.objects.all()
+    return render(request, 'products/artist_list.html', {
+        'artists': artists
+    })
+
+def artist_detail(request, pk):
+    artist = get_object_or_404(Artist, pk=pk)
+    products = artist.products.all()
+    return render(request, 'products/artist_detail.html', {
+        'artist': artist,
+        'products': products
+    })
+
+def category_detail(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    products = category.products.all()
+    return render(request, 'products/category_detail.html', {
+        'category': category,
+        'products': products
     })

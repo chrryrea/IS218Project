@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Artists - Edible Sculptures{% endblock %}
+
+{% block content %}
+<section class="artists-banner">
+    <div class="container">
+        <div class="banner-content">
+            <h1>Our Artists</h1>
+            <p>Meet the talented creators behind our edible sculptures</p>
+        </div>
+    </div>
+</section>
+
+<section class="artists-grid-section">
+    <div class="container">
+        <div class="artists-grid">
+            {% for artist in artists %}
+            <div class="artist-card">
+                <a href="{% url 'products:artist_detail' artist.id %}">
+                    <div class="artist-image">
+                        <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+                    </div>
+                    <div class="artist-info">
+                        <h3>{{ artist.name }}</h3>
+                        <p>{{ artist.bio|truncatewords:15 }}</p>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>No artists available at this time.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

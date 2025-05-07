@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shop | Edible Sculptures{% endblock %}
+
+{% block content %}
+  <section class="shop-categories">
+    <div class="container">
+      <h2>Shop by Category</h2>
+      <div class="category-row">
+        {% for category in categories %}
+        <div class="category">
+          <img src="{{ category.image.url }}" alt="{{ category.name }}">
+          <p>{{ category.name }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="shop-artists">
+    <div class="container">
+      <h2 class="section-title">Shop by Artist</h2>
+      <div class="artist-grid">
+        {% for artist in artists %}
+        <div class="artist-card">
+          <a href="{% url 'products:artist_detail' artist.id %}">
+            <div class="artist-image">
+              <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+            </div>
+            <h3>{{ artist.name }}</h3>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="shop">
+    <div class="container">
+      <h2>Our Products</h2>
+      {% for product in products %}
+      <div class="product-item">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p class="price">${{ product.price }}</p>
+          <div class="product-actions">
+            <a href="{% url 'products:product_detail' product.id %}" class="btn">View Details</a>
+            <form action="{% url 'products:cart_add' product.id %}" method="post" class="add-to-cart-form">
+              {% csrf_token %}
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="override" value="False">
+              <button type="submit" class="btn btn-cart">Add to Cart</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No products available at the moment.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

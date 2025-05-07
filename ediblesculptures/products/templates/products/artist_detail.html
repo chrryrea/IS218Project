@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ artist.name }} - Edible Sculptures{% endblock %}
+
+{% block content %}
+<section class="artist-banner">
+    <div class="container">
+        <div class="banner-content">
+            <h1>{{ artist.name }}</h1>
+        </div>
+    </div>
+</section>
+
+<section class="artist-profile-section">
+    <div class="container">
+        <div class="artist-profile">
+            <div class="artist-image">
+                <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+            </div>
+            <div class="artist-info">
+                <h2>About {{ artist.name }}</h2>
+                <p>{{ artist.bio }}</p>
+                
+                <div class="artist-stats">
+                    <div class="stat">
+                        <span class="stat-number">{{ products.count }}</span>
+                        <span class="stat-label">Products</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">{{ artist.products.all|length }}</span>
+                        <span class="stat-label">Creations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="artist-products">
+    <div class="container">
+        <h2 class="section-title">Products by {{ artist.name }}</h2>
+        
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <a href="{% url 'products:product_detail' product.id %}">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">${{ product.price }}</p>
+                    </div>
+                </a>
+                <form action="{% url 'products:cart_add' product.id %}" method="post" class="cart-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="override" value="False">
+                    <button type="submit" class="btn-add-cart">Add to Cart</button>
+                </form>
+            </div>
+            {% empty %}
+            <p>No products available from this artist at this time.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

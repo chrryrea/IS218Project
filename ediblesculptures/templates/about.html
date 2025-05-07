@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us | Edible Sculptures{% endblock %}
+
+{% block content %}
+  <section class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>We are a team of five passionate NJIT students who came together to bring this website to life as part of our IS218 class project. 
+        Our goal was to create a user-friendly platform where unique fruit and vegetable sculptures could be showcased and sold.
+         Each member contributed their own skills—from design and development to content and creativity—to build a site that blends functionality with fresh, 
+         artistic flair. This project reflects our teamwork, dedication, and excitement for combining technology with edible art.</p>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>Team Members</h2>
+
+    <div class="team-container">
+      <img id="teampics" src="{% static 'images/team/tairi.png' %}" alt="Tairi's picture">
+      <div class="team-info">
+        <h3>Tairi Johnson</h3>
+        <p>Hello, I'm Tairi, a 4th-Year IT Major who just recently switched from CS. I'm always working, whether it be my job, DJing, making music, or cutting hair. I guess I just like to stay busy.</p>
+      </div>
+    </div>
+
+    <div class="team-container">
+      <img id="teampics" src="{% static 'images/team/mike.jpeg' %}" alt="Mike's picture">
+      <div class="team-info">
+        <h3>Mike</h3>
+        <p>My name is Mike Felix and I am currently majoring in Business Information System at NJIT. During my free-time, i like to read, watch animes and action movie. Cool fun fact about me is that I like to camp and swim.</p>
+      </div>
+    </div>
+
+    <div class="team-container">
+      <img id="teampics" src="{% static 'images/team/default.jpg' %}" alt="Taylor's picture">
+      <div class="team-info">
+        <h3>Taylor</h3>
+        <p>About info for Taylor</p>
+      </div>
+    </div>
+
+    <div class="team-container">
+      <img id="teampics" src="{% static 'images/team/Ian.jpeg' %}" alt="Ian's picture">
+      <div class="team-info">
+        <h3>Ian Espinal</h3>
+        <p>My name is Ian Espinal and I am a Junior majoring in IT, mainly specialized in cybersecurity and website development. Typically, on my free time I prefer reading, playing the guitar, and watching movies.</p>
+      </div>
+    </div>
+
+    <div class="team-container">
+      <img id="teampics" src="{% static 'images/team/UmarF.png' %}" alt="Umar's picture">
+      <div class="team-info">
+        <h3>Umar Farooq</h3>
+        <p>My name is Umar Farooq. I am an Information Technology major at NJIT specializing in Management Information Systems.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

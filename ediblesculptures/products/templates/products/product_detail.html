@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | Edible Sculptures{% endblock %}
+
+{% block content %}
+  <section class="product">
+    <div class="container">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Artist: {{ product.artist.name }}</p>
+        <p class="price">${{ product.price }}</p>
+        <form action="{% url 'products:cart_add' product.id %}" method="post" class="cart-form">
+          {% csrf_token %}
+          <div class="quantity-selector">
+            <label for="id_quantity">Quantity:</label>
+            {{ cart_product_form.quantity }}
+            {{ cart_product_form.override }}
+          </div>
+          <button type="submit" class="btn">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <div class="container">
+      <h2>Reviews</h2>
+      
+      {% if reviews %}
+      <div class="reviews-list">
+        {% for review in reviews %}
+        <div class="review">
+          <h3>{{ review.name }}</h3>
+          <div class="rating">
+            {% for i in "12345" %}
+            <i class="fas fa-star{% if forloop.counter > review.rating %}-o{% endif %}"></i>
+            {% endfor %}
+          </div>
+          <p>{{ review.comment }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No reviews yet. Be the first to review this product!</p>
+      {% endif %}
+      
+      <div class="review-form">
+        <h3>Write a Review</h3>
+        <form method="post" action="{% url 'products:product_detail' product.id %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="artist-info">
+    <div class="container">
+      <h2>About the Artist</h2>
+      <div class="artist">
+        <img class="artist-pic" src="{{ product.artist.image.url }}" alt="{{ product.artist.name }}">
+        <h3>{{ product.artist.name }}</h3>
+        <p>{{ product.artist.bio }}</p>
+        <a href="{% url 'products:artist_detail' product.artist.id %}" class="btn">View Artist Profile</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

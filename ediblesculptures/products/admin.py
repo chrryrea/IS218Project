@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Product, Feedback, Category
+from .models import Product, Review, Category, Artist, Event
+
+@admin.register(Artist)
+class ArtistAdmin(admin.ModelAdmin):
+    list_display = ('name', 'featured')
+    search_fields = ('name', 'bio')
+    list_filter = ('featured',)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -8,12 +14,18 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price')
-    search_fields = ('name', 'description', 'artist')
-    list_filter = ('category',)
+    list_display = ('name', 'category', 'artist', 'price', 'featured')
+    search_fields = ('name', 'description')
+    list_filter = ('category', 'artist', 'featured')
 
-@admin.register(Feedback)
-class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user', 'rating', 'created_at')
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'name', 'rating', 'created_at')
     list_filter = ('rating', 'created_at')
-    search_fields = ('product__name', 'user__username', 'comment')
+    search_fields = ('product__name', 'name', 'comment')
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date')
+    search_fields = ('title', 'description')
+    list_filter = ('date',)

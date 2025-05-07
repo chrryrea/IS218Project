@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Edible Sculptures{% endblock %}
+
+{% block content %}
+  <section class="top-index">
+    <div class="container">
+        <img id="home-image" src="{% static 'images/fruits-scultpute.webp' %}" alt="fruit sculptures">
+        <div class="home-text"></div> 
+        <h2>Welcome to Edible Sculptures</h2>
+      <p>Discover the art of nature transformed!
+        We craft stunning sculptures from fruits and vegetables — perfect for events, centerpieces, and unforgettable gifts.
+        Browse our shop and bring fresh creativity to your decor.</p>
+    </div>
+  </section>
+
+  <section class="artists-collab">
+    <div class="container">
+      <h2>Our Artists</h2>
+      {% if artists %}
+        {% for artist in artists %}
+        <div class="artist">
+          <img class="artist-pic" src="{{ artist.image.url }}" alt="{{ artist.name }}" />
+          <h3>{{ artist.name }}</h3>
+          <p>{{ artist.bio }}</p>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="artist">
+          <img class="artist-pic" src="{% static 'images/artists/samantha-fox.png' %}" alt="Samantha Fox Pic" />
+          <h3>Samantha Fox</h3>
+          <p>A talented 32-year-old artist based in Long Beach Island, New Jersey. Originally pursuing a degree in psychology, Samantha never expected that a college pottery class would spark a lifelong passion. What started as a hobby quickly turned into a full-time artistic journey, with her unique ceramic pieces now gaining recognition across the local art scene. Inspired by the ocean views from her home on the bay, her work blends natural textures with modern design. When she's not in her studio shaping clay, Samantha enjoys spending time with her-two children, exploring the shore, and finding new ways to bring creativity into everyday life.
+              Stay tuned for more from this incredible artist!</p>
+        </div>
+        <div class="artist">
+          <img class="artist-pic" src="{% static 'images/artists/jacob-sullivan.png' %}" alt="Image of Jacob Sullivan" />
+          <h3>Jacob Sullivan</h3>
+          <p>Jacob Sullivan is a contemporary sculptor known for his ability to transform everyday organic forms into timeless works of art. Born and raised in the Pacific Northwest, he draws
+              inspiration from nature, using materials like bronze and ceramic to capture the delicate balance between realism and abstraction. His renowned Pair of Pears series explores themes of duality, imperfection, and harmony, with each piece showcasing meticulous attention to texture and form. A graduate of the Rhode Island School of Design, Sullivan has exhibited his work in galleries across the U.S. and Europe, earning recognition for his understated yet evocative style.</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+
+
+<section class="upcoming-events">
+    <div class="container">
+      <h2>Upcoming Events</h2>
+      <ul>
+        {% if events %}
+          {% for event in events %}
+          <li><strong>{{ event.title }}</strong>: {{ event.date|date:"F j, Y" }}</li>
+          <p>{{ event.description }}</p>
+          <p id="tickets"><strong>Tickets:</strong> Adults: $15 | Children: $5</p>
+          {% endfor %}
+        {% else %}
+          <li><strong>Annual Local Artist Fundraiser:</strong> June 6, 2025</li>
+          <p>The Annual Local Artist Fundraiser is all about bringing the community together to support small businesses through art.
+              It's a chance to check out amazing artwork from local artists, connect with creatives, and maybe even take home a unique piece.
+          With live demos and interactive exhibits, there's something for everyone to enjoy.</p>
+          <p id="tickets"><strong>Tickets:</strong> Adults: $15 | Children: $5</p>
+        {% endif %}
+      </ul>
+      <a href="#" class="btn">Get More Information</a>
+    </div>
+  </section>
+
+  <section class="featured-products">
+    <div class="container">
+      <h2>Featured & Best Selling Products</h2>
+      {% if featured_products %}
+        {% for product in featured_products %}
+        <div class="product">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p>"{{ product.name }}" by {{ product.artist.name }} {{ product.description|truncatewords:15 }}</p>
+            <br>
+            <p class="price">${{ product.price }}</p>
+            <br>
+            <a href="{% url 'products:product_detail' product.id %}" class="btn">Shop Now</a>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="product">
+          <img src="{% static 'images/plates.jpg' %}" alt="image of fruity dishes" />
+          <div class="product-info">
+            <h3>Fruity Dishes</h3>
+            <p>"Fruity Dishes" by Samantha Fox features a series of hand-sculpted plates.</p>
+            <br>
+            <p class="price">$118.78</p>
+            <br>
+            <a href="{% url 'products:product_list' %}" class="btn">Shop Now</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="{% static 'images/cool.jpg' %}" alt="COOL GREEN PEARS" />
+          <div class="product-info">
+            <h3>Cool Green Pear</h3>
+            <p>"Cool Green Pears" by Jacob Sullivan features a collection of smooth, stylized pears in gentle green shades.</p>
+            <br>
+            <p class="price">$231.78</p>
+            <br>
+            <a href="{% url 'products:product_list' %}" class="btn">Shop Now</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

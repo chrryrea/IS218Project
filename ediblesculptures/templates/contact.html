@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Edible Sculptures{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+  <div class="info-box">
+    <h2>Let's Get in Touch!</h2>
+    <div class="info-item"><i class="fas fa-phone"></i> (609) 434 - 7492</div>
+    <div class="info-item"><i class="fas fa-envelope"></i> <a href="mailto:ediblesculptures@gmail.com" style="color:white;">ediblesculptures@gmail.com</a></div>
+    <div class="info-item"><i class="fas fa-map-marker-alt"></i> 539 Duster Ave,<br> Long Beach Island, NJ 08008</div>
+  </div>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name...">
+    <input type="email" placeholder="Your Email...">
+    <input type="text" placeholder="Your Subject...">
+    <textarea rows="5" placeholder="Your Message..."></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+{% endblock %}

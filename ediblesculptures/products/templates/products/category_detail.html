@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }} - Edible Sculptures{% endblock %}
+
+{% block content %}
+<section class="category-banner">
+    <div class="container">
+        <div class="banner-content">
+            <h1>{{ category.name }}</h1>
+            <p>{{ category.description }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="category-products">
+    <div class="container">
+        <h2 class="section-title">Products in {{ category.name }}</h2>
+        
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <a href="{% url 'products:product_detail' product.id %}">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">${{ product.price }}</p>
+                    </div>
+                </a>
+                <form action="#" method="post" class="cart-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="button" class="btn-add-cart">Add to Cart</button>
+                </form>
+            </div>
+            {% empty %}
+            <p>No products available in this category at this time.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

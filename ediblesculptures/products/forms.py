@@ -1,17 +1,19 @@
 from django import forms
-from .models import Feedback
+from .models import Review
 
-class FeedbackForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
-        model = Feedback
-        fields = ['rating', 'comment']
+        model = Review
+        fields = ['name', 'email', 'rating', 'comment']
         widgets = {
             'rating': forms.RadioSelect(),
             'comment': forms.Textarea(attrs={'rows': 4})
         }
         labels = {
+            'name': 'Your Name',
+            'email': 'Your Email',
             'rating': 'Rating (1-5 stars)',
-            'comment': 'Your Feedback'
+            'comment': 'Your Review'
         }
 
 class CartAddProductForm(forms.Form):
